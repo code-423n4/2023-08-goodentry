@@ -1,55 +1,13 @@
-# ✨ So you want to run an audit
+# Good Entry 👍
 
-This `README.md` contains a set of checklists for our audit collaboration.
+[GoodEntry](/goodentry.jpg)
 
-Your audit will use two repos: 
-- **an _audit_ repo** (this one), which is used for scoping your audit and for providing information to wardens
-- **a _findings_ repo**, where issues are submitted (shared with you after the audit) 
+👍 GoodEntry is a decentralized derivatives marketbuilt on top of Uniswap v3, and designed to offer protection for users engaged in trading or yield-generation activities.
 
-Ultimately, when we launch the audit, this repo will be made public and will contain the smart contracts to be reviewed and all the information needed for audit participants. The findings repo will be made public after the audit report is published and your team has mitigated the identified issues.
-
-Some of the checklists in this doc are for **C4 (🐺)** and some of them are for **you as the audit sponsor (⭐️)**.
-
----
-
-# Audit setup
-
-# Repo setup
-
-## ⭐️ Sponsor: Add code to this repo
-
-- [ ] Create a PR to this repo with the below changes:
-- [ ] Provide a self-contained repository with working commands that will build (at least) all in-scope contracts, and commands that will run tests producing gas reports for the relevant contracts.
-- [ ] Make sure your code is thoroughly commented using the [NatSpec format](https://docs.soliditylang.org/en/v0.5.10/natspec-format.html#natspec-format).
-- [ ] Please have final versions of contracts and documentation added/updated in this repo **no less than 48 business hours prior to audit start time.**
-- [ ] Be prepared for a 🚨code freeze🚨 for the duration of the audit — important because it establishes a level playing field. We want to ensure everyone's looking at the same code, no matter when they look during the audit. (Note: this includes your own repo, since a PR can leak alpha to our wardens!)
+Links: [GoodEntry.io](https://goodentry.io) • [@goodentrylabs](https://twitter.com/goodentrylabs)  • [discord](https://discord.com/invite/goodentry) • [documentation](https://gitbook.goodentry.io/)
 
 
----
-
-## ⭐️ Sponsor: Edit this README
-
-Under "SPONSORS ADD INFO HERE" heading below, include the following:
-
-- [ ] Modify the bottom of this `README.md` file to describe how your code is supposed to work with links to any relevent documentation and any other criteria/details that the C4 Wardens should keep in mind when reviewing. ([Here's a well-constructed example.](https://github.com/code-423n4/2022-08-foundation#readme))
-  - [ ] When linking, please **provide all links as full absolute links** versus relative links
-  - [ ] All information should be provided in markdown format (HTML does not render on Code4rena.com)
-- [ ] Under the "Scope" heading, provide the name of each contract and:
-  - [ ] source lines of code (excluding blank lines and comments) in each
-  - [ ] external contracts called in each
-  - [ ] libraries used in each
-- [ ] Describe any novel or unique curve logic or mathematical models implemented in the contracts
-- [ ] Does the token conform to the ERC-20 standard? In what specific ways does it differ?
-- [ ] Describe anything else that adds any special logic that makes your approach unique
-- [ ] Identify any areas of specific concern in reviewing the code
-- [ ] Review the Gas award pool amount. This can be adjusted up or down, based on your preference - just flag it for Code4rena staff so we can update the pool totals across all comms channels. 
-- [ ] Optional / nice to have: pre-record a high-level overview of your protocol (not just specific smart contract functions). This saves wardens a lot of time wading through documentation.
-- [ ] See also: [this checklist in Notion](https://code4rena.notion.site/Key-info-for-Code4rena-sponsors-f60764c4c4574bbf8e7a6dbd72cc49b4#0cafa01e6201462e9f78677a39e09746)
-- [ ] Delete this checklist and all text above the line below when you're ready.
-
----
-
-# Good Entry audit details
+## Good Entry audit details
 - Total Prize Pool: $91,500 USDC 
   - HM awards: $46,250 USDC 
   - Analysis awards: $2,500 USDC 
@@ -64,63 +22,216 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 - Submit findings [using the C4 form](https://code4rena.com/contests/2023-08-good-entry/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
 - Starts August 1, 2023 20:00 UTC 
-- Ends TBD XXX XXX XX 20:00 UTC (ex. `Ends March 30, 2023 20:00 UTC`)
+- Ends August 8, 2023 20:00 UTC 
 
-## Automated Findings / Publicly Known Issues
 
-Automated findings output for the audit can be found [here](add link to report) within 24 hours of audit opening.
+## Scope
 
-*Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.*
+All the Solidity files are included in the audit scope, **expect the ones in the `contracts/lib, contracts/openzepplin-solidity and contracts/tests` folders**.
 
-[ ⭐️ SPONSORS ADD INFO HERE ]
+## Introduction of GoodEntry
 
-# Overview
+GoodEntry is a perpetual options trading platform, or protected perps: user can trade perps with limited downside. It is built on top of Uniswap v3 and relies on single tick liquidity. It consists of:
 
-*Please provide some context about the code being audited, and identify any areas of specific concern in reviewing the code. (This is a good place to link to your docs, if you have them.)*
+- Tokenized Uniswap v3 positions (TR), with a manager, oracle, and price manipulation resistance
+- ezVaults, holding TRs, and rebalancing the underlying liquidity as needed
+- A lending pool, forked from Aave v2 (out of audit scope)
+- A router that whitelists allowed addresses (such as allowed swap pools)
 
-# Scope
+The core idea is that single tick liquidity in Uniswap behaves as a limit order, whose payout is similar to writing an option.
+Borrowing such liquidity and removing it from the tick gives a pyout similar to buying an option.
 
-*List all files in scope in the table below (along with hyperlinks) -- and feel free to add notes here to emphasize areas of focus.*
+For more details, check the [Gitbook doc](https://gitbook.goodentry.io/).
 
-*For line of code counts, we recommend using [cloc](https://github.com/AlDanial/cloc).* 
+## Code 
 
-| Contract | SLOC | Purpose | Libraries used |  
-| ----------- | ----------- | ----------- | ----------- |
-| [contracts/folder/sample.sol](contracts/folder/sample.sol) | 123 | This contract does XYZ | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
+### Core
 
-## Out of scope
+|File  | SLOC         | Description  |
+|--|--|--|
+| TokenisableRange.sol | 264 |  Holds UniV3 NFTs and tokenises the ranges
+| RoeRouter.sol | 53 | Whitelists GE pools |
+| GeVault.sol | 296 | Holds single tick Tokenisable Ranges |
 
-*List any files/contracts that are out of scope for this audit.*
+### Position Managers
+Handle leverage borrowing + repayments, have priviledge access to the Lending pools
 
-# Additional Context
+|File       | SLOC    | Description  |
+|--|--|--|
+| RangeManager.sol | 133 | Assists with creation and tracking of V3 TokenisableRanges, and helping user enter and exit these ranges through the Lending Pool |
+| PositionManager.sol | 78 | Basic reusable functions |
+| OptionsPositionManager.sol | 346 | Leverage/deleverage tool for Tokenized Ranges + risk management/liquidation tool, non asset bearing  |
 
-*Describe any novel or unique curve logic or mathematical models implemented in the contracts*
 
-*Sponsor, please confirm/edit the information below.*
+## Testing
 
-## Scoping Details 
+The project uses Brownie as a testing framework. https://eth-brownie.readthedocs.io/en/stable/index.html
+
+### Files
+|File| Unit Tests For |
+|--|--|--|
+| test_RoeRouter.py | RoeRouter.sol |
+| test_PositionManager.py | PositionManager/PositionManager.sol |
+| test_OptionsPositionManager.py | PositionManager/OptionsPositionManager.sol |
+| test_RangeManager.py, test_RangeManager_WBTCUSDC | TokenisableRange.sol, RangeManager.sol |
+| test_GeVault.py | GeVault.sol |
+
+### Process
+
+First, start a local mainnet-fork. You can use Alchemy or Infura or any archive node.
+
+```bash
+ganache-cli --port 8545 --gasLimit 12000000 --accounts 10 --hardfork istanbul --mnemonic brownie --fork https://eth-mainnet.g.alchemy.com/v2/aE_kYsizNYWhqZ18ryeMsl-JkWmCMgFj@16360000 --host 0.0.0.0
 ```
-- If you have a public code repo, please share it here: https://github.com/GoodEntry-io/ge  
-- How many contracts are in scope?: 14  
-- Total SLoC for these contracts?: 2321
-- How many external imports are there?:  2
-- How many separate interfaces and struct definitions are there for the contracts within scope?:  35
-- Does most of your code generally use composition or inheritance?:  Composition
-- How many external calls?: 5  
-- What is the overall line coverage percentage provided by your tests?: 85%
-- Is this an upgrade of an existing system?: No
-- Check all that apply (e.g. timelock, NFT, AMM, ERC20, rollups, etc.): AMM, ERC-20 Token
-- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:  Yes 
-- Please describe required context: Requires understanding Aave LP and Uniswap  v3 positions  
-- Does it use an oracle?:  Chainlink
-- Describe any novel or unique curve logic or mathematical models your code uses: No new math.
-- Is this either a fork of or an alternate implementation of another project?:  No
-- Does it use a side-chain?: Yes. EVM-compatible side-chain.
-- Describe any specific areas you would like addressed: Please try to steal funds or cause token value inflation
+
+Then, run the tests,
+
+```bash
+brownie test
 ```
 
-# Tests
+should return something like
 
-*Provide every step required to build the project from a fresh git clone, as well as steps to run the tests with a gas report.* 
+```
+tester:~/goodentry$ brownie test 
+Brownie v1.19.3 - Python development framework for Ethereum
 
-*Note: Many wardens run Slither as a first pass for testing.  Please document any known errors with no workaround.* 
+============================================================================================= test session starts ==============================================================================================
+platform win32 -- Python 3.9.0, pytest-6.2.5, py-1.11.0, pluggy-1.0.0
+rootdir: D:\projects\theta\code4rena-2023-08-goodentry
+plugins: eth-brownie-1.19.3, hypothesis-6.27.3, forked-1.4.0, xdist-1.34.0, web3-5.31.3
+collected 43 items
+Attached to local RPC client listening at '127.0.0.1:8545'...
+
+tests\test_GeVault.py.............
+tests\test_OptionsPositionManager.py..........
+tests\test_PositionManager.py.
+tests\test_RangeManager.py .........
+tests\test_RangeManager_WBTCUSDC.py.......
+tests\test_RoeRouter.py...
+
+=============================================================================================== warnings summary ===============================================================================================
+c:\python39\lib\site-packages\brownie\network\main.py:44
+  c:\python39\lib\site-packages\brownie\network\main.py:44: BrownieEnvironmentWarning: Development network has a block height of 16360001
+    warnings.warn(
+
+tests/test_OptionsPositionManager.py::test_unallowed_flashloan_call
+tests/test_OptionsPositionManager.py::test_unallowed_flashloan_call
+  c:\python39\lib\site-packages\eth_abi\codec.py:87: DeprecationWarning: abi.encode_abi() and abi.encode_abi_packed() are deprecated and will be removed in version 4.0.0 in favor of abi.encode() and abi.encode_packed(), respectively
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/warnings.html
+================================================================================== 43 passed, 3 warnings in 338.45s (0:05:38) ==================================================================================
+```
+
+
+#### Coverage 
+
+```bash
+brownie test
+```
+
+
+```
+=================================================================================================== Coverage ===================================================================================================
+contract: GeVault - 57.5%
+    GeVault.checkSetApprove - 100.0%
+    GeVault.getAdjustedBaseFee - 100.0%
+    GeVault.deployAssets - 81.2%
+    Address.functionCallWithValue - 75.0%
+    ERC20._burn - 75.0%
+    ERC20._mint - 75.0%
+    GeVault.depositAndStash - 75.0%
+    GeVault.getActiveTickIndex - 75.0%
+    GeVault.rebalance - 75.0%
+    SafeERC20._callOptionalReturn - 75.0%
+    GeVault.removeFromTick - 70.8%
+    GeVault.deposit - 67.9%
+    GeVault.withdraw - 67.3%
+    GeVault.poolMatchesOracle - 58.3%
+    Address.verifyCallResult - 37.5%
+    GeVault.<receive> - 25.0%
+    ERC20._approve - 0.0%
+    ERC20._transfer - 0.0%
+    ERC20.decreaseAllowance - 0.0%
+    ERC20.transferFrom - 0.0%
+    GeVault.latestAnswer - 0.0%
+    Ownable.transferOwnership - 0.0%
+
+  contract: NullOracle - 100.0%
+    NullOracle.getAssetPrice - 100.0%
+
+  contract: OptionsPositionManager - 82.7%
+    OptionsPositionManager.buyOptions - 100.0%
+    OptionsPositionManager.calculateAndSendFee - 100.0%
+    OptionsPositionManager.executeBuyOptions - 100.0%
+    OptionsPositionManager.executeLiquidation - 100.0%
+    OptionsPositionManager.executeOperation - 100.0%
+    OptionsPositionManager.sellOptions - 100.0%
+    PositionManager.PMWithdraw - 100.0%
+    PositionManager.checkSetAllowance - 100.0%
+    OptionsPositionManager.withdrawOptionAssets - 96.4%
+    OptionsPositionManager.closeDebt - 87.9%
+    OptionsPositionManager.close - 83.3%
+    Address.functionCallWithValue - 75.0%
+    OptionsPositionManager.checkExpectedBalances - 75.0%
+    OptionsPositionManager.getTargetAmountFromOracle - 75.0%
+    OptionsPositionManager.liquidate - 75.0%
+    OptionsPositionManager.swapTokensForExactTokens - 75.0%
+    OptionsPositionManager.withdrawOptions - 75.0%
+    SafeERC20._callOptionalReturn - 75.0%
+    PositionManager.cleanup - 50.0%
+    Address.verifyCallResult - 37.5%
+
+  contract: RangeManager - 88.6%
+    RangeManager.generateRange - 100.0%
+    RangeManager.transferAssetsIntoStep - 100.0%
+    RangeManager.removeFromStep - 93.8%
+    RangeManager.checkNewRange - 91.7%
+    RangeManager.cleanup - 91.7%
+    Ownable.transferOwnership - 0.0%
+
+  contract: Test_OptionsPositionManager - 12.6%
+    OptionsPositionManager.getTargetAmountFromOracle - 100.0%
+    OptionsPositionManager.swapTokensForExactTokens - 91.7%
+    PositionManager.checkSetAllowance - 75.0%
+    OptionsPositionManager.buyOptions - 0.0%
+    OptionsPositionManager.calculateAndSendFee - 0.0%
+    OptionsPositionManager.checkExpectedBalances - 0.0%
+    OptionsPositionManager.close - 0.0%
+    OptionsPositionManager.closeDebt - 0.0%
+    OptionsPositionManager.executeBuyOptions - 0.0%
+    OptionsPositionManager.executeLiquidation - 0.0%
+    OptionsPositionManager.executeOperation - 0.0%
+    OptionsPositionManager.liquidate - 0.0%
+    OptionsPositionManager.sellOptions - 0.0%
+    OptionsPositionManager.withdrawOptionAssets - 0.0%
+    OptionsPositionManager.withdrawOptions - 0.0%
+    PositionManager.PMWithdraw - 0.0%
+    PositionManager.cleanup - 0.0%
+
+  contract: TickMath - 86.5%
+    TickMath.getSqrtRatioAtTick - 89.2%
+    TickMath.getTickAtSqrtRatio - 72.5%
+
+  contract: TokenisableRange - 67.0%
+    ERC20.transferFrom - 100.0%
+    TokenisableRange.init - 100.0%
+    TokenisableRange.initProxy - 100.0%
+    ERC20._approve - 87.5%
+    ERC20._burn - 87.5%
+    TokenisableRange.returnExpectedBalance - 87.5%
+    ERC20._transfer - 83.3%
+    LiquidityAmounts.getAmountsForLiquidity - 81.7%
+    ERC20._mint - 75.0%
+    LiquidityAmounts.getAmount0ForLiquidity - 50.0%
+    LiquidityAmounts.getAmount1ForLiquidity - 50.0%
+    TokenisableRange.getValuePerLPAtPrice - 50.0%
+    TokenisableRange.withdraw - 50.0%
+    TokenisableRange.deposit - 49.6%
+    FullMath.mulDiv - 25.8%
+    ERC20.decreaseAllowance - 0.0%
+
+  contract: UpgradeableBeacon - 100.0%
+    Ownable.transferOwnership - 100.0%
+```
