@@ -1,6 +1,6 @@
 # Good Entry 👍
 
-[GoodEntry](/goodentry.jpg)
+![GoodEntry](/goodentry.jpg)
 
 👍 GoodEntry is a decentralized derivatives marketbuilt on top of Uniswap v3, and designed to offer protection for users engaged in trading or yield-generation activities.
 
