@@ -47,7 +47,7 @@ For more details, check the [Gitbook doc](https://gitbook.goodentry.io/).
 
 ### Core
 
-|File  | SLOC         | Description  |
+|File | SLOC | Description  |
 |--|--|--|
 | TokenisableRange.sol | 264 |  Holds UniV3 NFTs and tokenises the ranges
 | RoeRouter.sol | 53 | Whitelists GE pools |
@@ -56,7 +56,7 @@ For more details, check the [Gitbook doc](https://gitbook.goodentry.io/).
 ### Position Managers
 Handle leverage borrowing + repayments, have priviledge access to the Lending pools
 
-|File       | SLOC    | Description  |
+|File | SLOC | Description  |
 |--|--|--|
 | RangeManager.sol | 133 | Assists with creation and tracking of V3 TokenisableRanges, and helping user enter and exit these ranges through the Lending Pool |
 | PositionManager.sol | 78 | Basic reusable functions |
@@ -68,8 +68,8 @@ Handle leverage borrowing + repayments, have priviledge access to the Lending po
 The project uses Brownie as a testing framework. https://eth-brownie.readthedocs.io/en/stable/index.html
 
 ### Files
-|File| Unit Tests For |
-|--|--|--|
+|File | Unit Tests For |
+|--|--|
 | test_RoeRouter.py | RoeRouter.sol |
 | test_PositionManager.py | PositionManager/PositionManager.sol |
 | test_OptionsPositionManager.py | PositionManager/OptionsPositionManager.sol |
