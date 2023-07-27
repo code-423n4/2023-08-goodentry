@@ -24,6 +24,9 @@ Links: [GoodEntry.io](https://goodentry.io) • [@goodentrylabs](https://twitter
 - Starts August 1, 2023 20:00 UTC 
 - Ends August 8, 2023 20:00 UTC 
 
+# Automated Findings / Publicly Known Issues
+Automated findings output for the audit can be found [here](add link to report) within 24 hours of audit opening.
+*Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.*
 
 ## Scope
 
@@ -234,4 +237,24 @@ contract: GeVault - 57.5%
 
   contract: UpgradeableBeacon - 100.0%
     Ownable.transferOwnership - 100.0%
+```
+## Scoping Details 
+```
+- If you have a public code repo, please share it here: https://github.com/GoodEntry-io/ge  
+- How many contracts are in scope?: 14  
+- Total SLoC for these contracts?: 2321
+- How many external imports are there?:  2
+- How many separate interfaces and struct definitions are there for the contracts within scope?:  35
+- Does most of your code generally use composition or inheritance?:  Composition
+- How many external calls?: 5  
+- What is the overall line coverage percentage provided by your tests?: 85%
+- Is this an upgrade of an existing system?: No
+- Check all that apply (e.g. timelock, NFT, AMM, ERC20, rollups, etc.): AMM, ERC-20 Token
+- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:  Yes 
+- Please describe required context: Requires understanding Aave LP and Uniswap  v3 positions  
+- Does it use an oracle?:  Chainlink
+- Describe any novel or unique curve logic or mathematical models your code uses: No new math.
+- Is this either a fork of or an alternate implementation of another project?:  No
+- Does it use a side-chain?: Yes. EVM-compatible side-chain.
+- Describe any specific areas you would like addressed: Please try to steal funds or cause token value inflation
 ```
