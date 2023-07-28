@@ -101,27 +101,27 @@ Borrowing such liquidity and removing it from the tick gives a pyout similar to 
 Any files not explicitly mentioned above.
 
 ## Scoping Details 
-- Public repository - https://github.com/GoodEntry-io/ge  
-- Contracts are in scope?: 14  
-- Total SLoC for these contracts?: 2482
-- How many external imports are there?:  2
-- How many separate interfaces and struct definitions are there for the contracts within scope?:  35
-- Does most of your code generally use composition or inheritance?:  Composition
-- How many external calls?: 5  
-- What is the overall line coverage percentage provided by your tests?: 85%
-- Is this an upgrade of an existing system?: No
-- Check all that apply (e.g. timelock, NFT, AMM, ERC20, rollups, etc.): AMM, ERC-20 Token
-- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:  Yes 
-- Please describe required context: Requires understanding Aave LP and Uniswap  v3 positions  
-- Does it use an oracle?:  Chainlink
-- Describe any novel or unique curve logic or mathematical models your code uses: No new math.
-- Is this either a fork of or an alternate implementation of another project?:  No
-- Does it use a side-chain?: Yes. EVM-compatible side-chain.
-- Describe any specific areas you would like addressed: Please try to steal funds or cause token value inflation
-- Please list specific ERC20 that your protocol is anticipated to interact with:: USDC.e  (bridged USDC), wBTC, ARB, GMX
-- Please list specific list of ERC721 that your protocol is anticipated to interact with: Uniswap V3 Positions
-- Can you specify on which blockchain networks your smart contracts will be deployed?: Arbitrum
-- Is any part of your implementation intended to conform to any EIP's?: TokenizableRange.sol and GeVault.sol are ERC20 compliant.
+- **Public repository:** https://github.com/GoodEntry-io/ge  
+- **Contracts are in scope?:** 14  
+- **Total SLoC for these contracts?:** 2482
+- **How many external imports are there?:**  2
+- **How many separate interfaces and struct definitions are there for the contracts within scope?:**  35
+- **Does most of your code generally use composition or inheritance?:**  Composition
+- **How many external calls?:** 5  
+- **What is the overall line coverage percentage provided by your tests?:** 85%
+- **Is this an upgrade of an existing system?:** No
+- **Check all that apply (e.g. timelock, NFT, AMM, ERC20, rollups, etc.):** AMM, ERC-20 Token
+- **Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:**  Yes 
+- **Please describe required context:** Requires understanding Aave LP and Uniswap  v3 positions  
+- **Does it use an oracle?:**  Chainlink
+- **Describe any novel or unique curve logic or mathematical models your code uses:** No new math.
+- **Is this either a fork of or an alternate implementation of another project?:**  No
+- **Does it use a side-chain?:** Yes. EVM-compatible side-chain.
+- **Describe any specific areas you would like addressed:** Please try to steal funds or cause token value inflation
+- **Please list specific ERC20 that your protocol is anticipated to interact with:** USDC.e  (bridged USDC), wBTC, ARB, GMX
+- **Please list specific list of ERC721 that your protocol is anticipated to interact with:** Uniswap V3 Positions
+- **Can you specify on which blockchain networks your smart contracts will be deployed?:** Arbitrum
+- **Is any part of your implementation intended to conform to any EIP's?:** TokenizableRange.sol and GeVault.sol are ERC20 compliant.
 
 
 ## Tests
