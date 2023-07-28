@@ -4,9 +4,6 @@
 
 👍 GoodEntry is a decentralized derivatives marketbuilt on top of Uniswap v3, and designed to offer protection for users engaged in trading or yield-generation activities.
 
-Links: [GoodEntry.io](https://goodentry.io) • [@goodentrylabs](https://twitter.com/goodentrylabs)  • [discord](https://discord.com/invite/goodentry) • [documentation](https://gitbook.goodentry.io/)
-
-
 ## Good Entry audit details
 - Total Prize Pool: $91,500 USDC 
   - HM awards: $46,250 USDC 
@@ -28,11 +25,7 @@ Links: [GoodEntry.io](https://goodentry.io) • [@goodentrylabs](https://twitter
 Automated findings output for the audit can be found [here](add link to report) within 24 hours of audit opening.
 *Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.*
 
-## Scope
-
-All the Solidity files are included in the audit scope, **expect the ones in the `contracts/lib, contracts/openzepplin-solidity and contracts/tests` folders**.
-
-## Introduction of GoodEntry
+## Overview
 
 GoodEntry is a perpetual options trading platform, or protected perps: user can trade perps with limited downside. It is built on top of Uniswap v3 and relies on single tick liquidity. It consists of:
 
@@ -46,38 +39,93 @@ Borrowing such liquidity and removing it from the tick gives a pyout similar to 
 
 For more details, check the [Gitbook doc](https://gitbook.goodentry.io/).
 
-## Code 
+### Additional Context
+- [Website](https://goodentry.io)
+- [Twitter](https://twitter.com/goodentrylabs
+- [Discord](https://discord.com/invite/goodentry)
+- [Documentation](https://gitbook.goodentry.io/)
+- [Deployed contracts](https://gitbook.goodentry.io/contracts)
+- [Previous audits](https://gitbook.goodentry.io/audits)
 
-### Core
+## Scope
 
-|File | SLOC | Description  |
-|--|--|--|
-| TokenisableRange.sol | 264 |  Holds UniV3 NFTs and tokenises the ranges
-| RoeRouter.sol | 53 | Whitelists GE pools |
-| GeVault.sol | 296 | Holds single tick Tokenisable Ranges |
+| File                                                                                                                                                  | Description                                                                                                                       | SLOC |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ---- |
+| [OptionsPositionManager.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/PositionManager/OptionsPositionManager.sol)          | Leverage/deleverage tool for Tokenized Ranges + risk management/liquidation tool, non asset bearing                               | 350  |
+| [GeVault.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/GeVault.sol)                                                        | Holds single tick Tokenisable Ranges                                                                                              | 296  |
+| [TokenisableRange.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/TokenisableRange.sol)                                      | Holds UniV3 NFTs and tokenises the ranges                                                                                         | 265  |
+| [IAaveLendingPoolV2.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IAaveLendingPoolV2.sol)                       |                                                                                                                                   | 176  |
+| [V3Proxy.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/helper/V3Proxy.sol)                                                 |                                                                                                                                   | 170  |
+| [RangeManager.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/RangeManager.sol)                                              | Assists with creation and tracking of V3 TokenisableRanges, and helping user enter and exit these ranges through the Lending Pool | 144  |
+| [IUniswapV2Router01.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IUniswapV2Router01.sol)                       |                                                                                                                                   | 141  |
+| [INonfungiblePositionManager.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/INonfungiblePositionManager.sol)     |                                                                                                                                   | 95   |
+| [ILendingPoolConfigurator.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/ILendingPoolConfigurator.sol)           |                                                                                                                                   | 89   |
+| [PositionManager.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/PositionManager/PositionManager.sol)                        | Basic reusable functions                                                                                                          | 80   |
+| [LPOracle.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/helper/LPOracle.sol)                                               |                                                                                                                                   | 62   |
+| [IAaveIncentivesController.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IAaveIncentivesController.sol)         |                                                                                                                                   | 58   |
+| [RoeRouter.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/RoeRouter.sol)                                                    | Whitelists GE pools                                                                                                               | 53   |
+| [ISwapRouter.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/ISwapRouter.sol)                                     |                                                                                                                                   | 43   |
+| [IUniswapV2Pair.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IUniswapV2Pair.sol)                               |                                                                                                                                   | 43   |
+| [FixedOracle.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/helper/FixedOracle.sol)                                         |                                                                                                                                   | 38   |
+| [IAToken.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IAToken.sol)                                             |                                                                                                                                   | 35   |
+| [PoolAddress.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/PoolAddress.sol)                                     |                                                                                                                                   | 34   |
+| [OracleConvert.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/helper/OracleConvert.sol/)                                    |                                                                                                                                   | 33   |
+| [ILendingPoolAddressesProvider.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/ILendingPoolAddressesProvider.sol) |                                                                                                                                   | 32   |
+| [AggregatorV3Interface.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/AggregatorV3Interface.sol)                 |                                                                                                                                   | 26   |
+| [IUniswapV3Factory.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IUniswapV3Factory.sol)                         |                                                                                                                                   | 26   |
+| [IInitializableAToken.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IInitializableAToken.sol)                   |                                                                                                                                   | 25   |
+| [DataTypes.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/DataTypes.sol)                                         |                                                                                                                                   | 24   |
+| [IUniswapV3Pool.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IUniswapV3Pool.sol)                               |                                                                                                                                   | 22   |
+| [IERC721Permit.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IERC721Permit.sol)                                 |                                                                                                                                   | 14   |
+| [IFlashLoanReceiver.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IFlashLoanReceiver.sol)                       |                                                                                                                                   | 14   |
+| [IUniswapV2Factory.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IUniswapV2Factory.sol)                         |                                                                                                                                   | 12   |
+| [ICreditDelegationToken.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/ICreditDelegationToken.sol)               |                                                                                                                                   | 11   |
+| [IERC20.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IERC20.sol)                                               |                                                                                                                                   | 11   |
+| [IPeripheryPayments.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IPeripheryPayments.sol)                       |                                                                                                                                   | 10   |
+| [IPoolInitializer.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IPoolInitializer.sol)                           |                                                                                                                                   | 10   |
+| [IWETH.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IWETH.sol)                                                 |                                                                                                                                   | 10   |
+| [IUniswapV3SwapCallback.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IUniswapV3SwapCallback.sol)               |                                                                                                                                   | 8    |
+| [IAaveOracle.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IAaveOracle.sol)                                     |                                                                                                                                   | 6    |
+| [IScaledBalanceToken.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IScaledBalanceToken.sol)                     |                                                                                                                                   | 6    |
+| [IPeripheryImmutableState.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IPeripheryImmutableState.sol)           |                                                                                                                                   | 5    |
+| [IPriceOracle.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IPriceOracle.sol)                                   |                                                                                                                                   | 5    |
+| SUM:                            
 
-### Position Managers
-Handle leverage borrowing + repayments, have priviledge access to the Lending pools
+## Out of scope
+All contracts and interfaces not explicitly mentioned above.
 
-|File | SLOC | Description  |
-|--|--|--|
-| RangeManager.sol | 133 | Assists with creation and tracking of V3 TokenisableRanges, and helping user enter and exit these ranges through the Lending Pool |
-| PositionManager.sol | 78 | Basic reusable functions |
-| OptionsPositionManager.sol | 346 | Leverage/deleverage tool for Tokenized Ranges + risk management/liquidation tool, non asset bearing  |
+## Scoping Details 
+- If you have a public code repo, please share it here: https://github.com/GoodEntry-io/ge  
+- How many contracts are in scope?: 14  
+- Total SLoC for these contracts?: 2482
+- How many external imports are there?:  2
+- How many separate interfaces and struct definitions are there for the contracts within scope?:  35
+- Does most of your code generally use composition or inheritance?:  Composition
+- How many external calls?: 5  
+- What is the overall line coverage percentage provided by your tests?: 85%
+- Is this an upgrade of an existing system?: No
+- Check all that apply (e.g. timelock, NFT, AMM, ERC20, rollups, etc.): AMM, ERC-20 Token
+- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:  Yes 
+- Please describe required context: Requires understanding Aave LP and Uniswap  v3 positions  
+- Does it use an oracle?:  Chainlink
+- Describe any novel or unique curve logic or mathematical models your code uses: No new math.
+- Is this either a fork of or an alternate implementation of another project?:  No
+- Does it use a side-chain?: Yes. EVM-compatible side-chain.
+- Describe any specific areas you would like addressed: Please try to steal funds or cause token value inflation
 
 
-## Testing
+## Tests
 
 The project uses Brownie as a testing framework. https://eth-brownie.readthedocs.io/en/stable/index.html
 
 ### Files
-|File | Unit Tests For |
-|--|--|
-| test_RoeRouter.py | RoeRouter.sol |
-| test_PositionManager.py | PositionManager/PositionManager.sol |
-| test_OptionsPositionManager.py | PositionManager/OptionsPositionManager.sol |
-| test_RangeManager.py, test_RangeManager_WBTCUSDC | TokenisableRange.sol, RangeManager.sol |
-| test_GeVault.py | GeVault.sol |
+| File                                             | Unit Tests For                             |
+| ------------------------------------------------ | ------------------------------------------ |
+| test_RoeRouter.py                                | RoeRouter.sol                              |
+| test_PositionManager.py                          | PositionManager/PositionManager.sol        |
+| test_OptionsPositionManager.py                   | PositionManager/OptionsPositionManager.sol |
+| test_RangeManager.py, test_RangeManager_WBTCUSDC | TokenisableRange.sol, RangeManager.sol     |
+| test_GeVault.py                                  | GeVault.sol                                |
 
 ### Process
 
@@ -128,7 +176,7 @@ tests/test_OptionsPositionManager.py::test_unallowed_flashloan_call
 ```
 
 
-#### Coverage 
+## Coverage 
 
 ```bash
 brownie test
@@ -237,24 +285,4 @@ contract: GeVault - 57.5%
 
   contract: UpgradeableBeacon - 100.0%
     Ownable.transferOwnership - 100.0%
-```
-## Scoping Details 
-```
-- If you have a public code repo, please share it here: https://github.com/GoodEntry-io/ge  
-- How many contracts are in scope?: 14  
-- Total SLoC for these contracts?: 2321
-- How many external imports are there?:  2
-- How many separate interfaces and struct definitions are there for the contracts within scope?:  35
-- Does most of your code generally use composition or inheritance?:  Composition
-- How many external calls?: 5  
-- What is the overall line coverage percentage provided by your tests?: 85%
-- Is this an upgrade of an existing system?: No
-- Check all that apply (e.g. timelock, NFT, AMM, ERC20, rollups, etc.): AMM, ERC-20 Token
-- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:  Yes 
-- Please describe required context: Requires understanding Aave LP and Uniswap  v3 positions  
-- Does it use an oracle?:  Chainlink
-- Describe any novel or unique curve logic or mathematical models your code uses: No new math.
-- Is this either a fork of or an alternate implementation of another project?:  No
-- Does it use a side-chain?: Yes. EVM-compatible side-chain.
-- Describe any specific areas you would like addressed: Please try to steal funds or cause token value inflation
 ```
