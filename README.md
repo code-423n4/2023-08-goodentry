@@ -25,6 +25,9 @@
 Automated findings output for the audit can be found [here](add link to report) within 24 hours of audit opening.
 *Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.*
 
+- We know that the liveliness of the oracle can be an issue, but we dont check in our contracts as anyway the Aave lending pool wouldn't work in case of stale/zero price feed.
+- We also know that there can be some side effects when the supply of tokens is drained from the lending pool (borrowing), leading to positions that can't be closed, we know how to handle that though.
+
 ## Overview
 
 GoodEntry is a perpetual options trading platform, or protected perps: user can trade perps with limited downside. It is built on top of Uniswap v3 and relies on single tick liquidity. It consists of:
@@ -95,8 +98,8 @@ For more details, check the [Gitbook doc](https://gitbook.goodentry.io/).
 All contracts and interfaces not explicitly mentioned above.
 
 ## Scoping Details 
-- If you have a public code repo, please share it here: https://github.com/GoodEntry-io/ge  
-- How many contracts are in scope?: 14  
+- Public repository - https://github.com/GoodEntry-io/ge  
+- Contracts are in scope?: 14  
 - Total SLoC for these contracts?: 2482
 - How many external imports are there?:  2
 - How many separate interfaces and struct definitions are there for the contracts within scope?:  35
@@ -112,6 +115,10 @@ All contracts and interfaces not explicitly mentioned above.
 - Is this either a fork of or an alternate implementation of another project?:  No
 - Does it use a side-chain?: Yes. EVM-compatible side-chain.
 - Describe any specific areas you would like addressed: Please try to steal funds or cause token value inflation
+- Please list specific ERC20 that your protocol is anticipated to interact with:: USDC.e  (bridged USDC), wBTC, ARB, GMX
+- Please list specific list of ERC721 that your protocol is anticipated to interact with: Uniswap V3 Positions
+- Can you specify on which blockchain networks your smart contracts will be deployed?: Arbitrum
+- Is any part of your implementation intended to conform to any EIP's?: TokenizableRange.sol and GeVault.sol are ERC20 compliant.
 
 
 ## Tests
