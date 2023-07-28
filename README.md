@@ -17,13 +17,17 @@
   - Mitigation Review: $26,000 USDC (*Opportunity goes to top 3 certified wardens based on placement in this audit.*)
 - Join [C4 Discord](https://discord.gg/code4rena) to register
 - Submit findings [using the C4 form](https://code4rena.com/contests/2023-08-good-entry/submit)
-- [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
+- [Read our guidelines 
+](https://docs.code4rena.com/roles/wardens)
 - Starts August 1, 2023 20:00 UTC 
 - Ends August 8, 2023 20:00 UTC 
 
-# Automated Findings / Publicly Known Issues
+## Automated Findings
+
 Automated findings output for the audit can be found [here](add link to report) within 24 hours of audit opening.
 *Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.*
+
+## Publicly Known Issues
 
 - We know that the liveliness of the oracle can be an issue, but we dont check in our contracts as anyway the Aave lending pool wouldn't work in case of stale/zero price feed.
 - We also know that there can be some side effects when the supply of tokens is drained from the lending pool (borrowing), leading to positions that can't be closed, we know how to handle that though.
@@ -40,15 +44,14 @@ GoodEntry is a perpetual options trading platform, or protected perps: user can 
 The core idea is that single tick liquidity in Uniswap behaves as a limit order, whose payout is similar to writing an option.
 Borrowing such liquidity and removing it from the tick gives a pyout similar to buying an option.
 
-For more details, check the [Gitbook doc](https://gitbook.goodentry.io/).
 
 ### Additional Context
-- [Website](https://goodentry.io)
-- [Twitter](https://twitter.com/goodentrylabs
-- [Discord](https://discord.com/invite/goodentry)
 - [Documentation](https://gitbook.goodentry.io/)
 - [Deployed contracts](https://gitbook.goodentry.io/contracts)
 - [Previous audits](https://gitbook.goodentry.io/audits)
+- [Website](https://goodentry.io)
+- [Twitter](https://twitter.com/goodentrylabs)
+- [Discord](https://discord.com/invite/goodentry)
 
 ## Scope
 
@@ -92,10 +95,10 @@ For more details, check the [Gitbook doc](https://gitbook.goodentry.io/).
 | [IScaledBalanceToken.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IScaledBalanceToken.sol)                     |                                                                                                                                   | 6    |
 | [IPeripheryImmutableState.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IPeripheryImmutableState.sol)           |                                                                                                                                   | 5    |
 | [IPriceOracle.sol](https://github.com/code-423n4/2023-08-goodentry/blob/main/contracts/interfaces/IPriceOracle.sol)                                   |                                                                                                                                   | 5    |
-| SUM:                            
+| SUM:                                                                                                                                                  |                                                                                                                                   | 2482 |                                                                                                                                         |                                                                                                                                   | **2482** |
 
 ## Out of scope
-All contracts and interfaces not explicitly mentioned above.
+Any files not explicitly mentioned above.
 
 ## Scoping Details 
 - Public repository - https://github.com/GoodEntry-io/ge  
