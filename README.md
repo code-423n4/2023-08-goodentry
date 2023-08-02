@@ -25,6 +25,7 @@
 ## Automated Findings
 
 Automated findings output for the audit can be found [here](https://gist.github.com/thebrittfactor/691192755086c4aa311b69a9de0690f3).
+
 *Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.*
 
 ## Publicly Known Issues
