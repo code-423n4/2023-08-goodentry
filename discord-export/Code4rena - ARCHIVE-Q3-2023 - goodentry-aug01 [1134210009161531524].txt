@@ -1,0 +1,825 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-Q3-2023 / goodentry-aug01
+==============================================================
+
+[07/28/2023 15:31] kartoonjoy (pinned)
+👋 Hello and welcome to the audit channel for the $91,500 USDC **Good Entry** audit!
+
+📆 Audit opens 08/01/2023 20:00 (20:00 UTC) and runs through 08/07/2023 20:00 (20:00 UTC) (6 days).
+
+Please give a warm welcome to the Good Entry team, particularly @NicoDeva, who will be available for questions either here in the channel or via DM in the SGT (UTC+8) timezone(s).
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this audit, consider enabling notifications for this channel. 🐺 ⏰
+
+Audit Page: https://code4rena.com/contests/2023-08-good-entry#top
+
+{Embed}
+https://code4rena.com/contests/2023-08-good-entry
+Code4rena
+Code4rena is a competitive audit platform that finds more high-severity vulnerabilities, more quickly than any other auditing method.
+Code4rena - ARCHIVE-Q3-2023 - goodentry-aug01 [1134210009161531524].txt_Files/c4-og-banner-55027.png
+
+{Reactions}
+code4rena (20) 🎉 (10) ❤️ (11) 🔥 (9) 💜 (8) 😍 (8) chefskiss (8) 
+
+[07/28/2023 19:01] kartoonjoy
+Pinned a message.
+
+
+[08/02/2023 00:07] Banditx0x#5323
+@NicoDeva thanks for joining code4rena, I added you to ask a question about the contracts
+
+{Reactions}
+🔥 
+
+[08/02/2023 04:52] henry0226
+@NicoDeva Hi, I added you for some questions about the contract
+
+
+[08/02/2023 05:28] _3doc_
+Hi @NicoDeva I've sent you a friend request 🤗 if you are brave enough to accept it I'll have a question for you. TY!
+
+
+[08/02/2023 06:09] tough111
+Hi, I am a newbie in code4rena. can you explain the audit process please?
+
+
+[08/02/2023 06:12] _3doc_
+Welcome @Tough you can find in the link below the introduction info for wardens. 
+
+You can use the #❓questions and #🐺wardens for questions related to Code4rena and the warden role & process, while in this channel the conversation is mostly related to the GoodEntry audit (design, codebase, ...)
+
+{Reactions}
+thankyou 
+
+[08/02/2023 06:12] _3doc_
+https://docs.code4rena.com/roles/wardens
+
+{Embed}
+https://docs.code4rena.com/roles/wardens
+Wardens
+Wardens protect the DeFi ecosystem from threats by auditing code.
+
+
+[08/02/2023 06:14] tough111
+Thans for your kindly explanation.
+
+{Reactions}
+🤗 
+
+[08/02/2023 07:42] 14si2o_flint
+@NicoDeva I noticed the contracts in lib are out of scope. Yet they are imported and used in the core contracts so any error in the libs would break the core contracts. Should they not also be considered in scope then?
+
+
+[08/02/2023 07:58] beirao
+These lib contracts are fork from Uniswap. They may be out of scope for this.
+
+
+[08/02/2023 07:59] 14si2o_flint
+Yeah they are noted out of scope. I'm questioning whether they should be out of scope 😁
+
+{Reactions}
+👍🏼 
+
+[08/02/2023 08:02] beirao
+If you see something wrong in these contracts you should then go check the Uniswap bug bounty you will earn much more 😂
+
+{Reactions}
+😂 (5) 
+
+[08/02/2023 08:03] beirao
+But yea there may be modifications. It's worth checking
+
+
+[08/02/2023 08:23] 0x11singh99
+@NicoDeva  Does the previous audits findings by PeckShield and Protofire  has been fixed Or not in this protocol code listed on code4rena ??
+They audited  deployed contracts Or these listed contracts are also audited ??
+
+
+[08/02/2023 08:30] bytes032
+usually any findings from previous reports are considered known issues
+
+
+[08/02/2023 08:31] nicodeva
+Contracts in lib/ are external contracts copied in the repo, from Uniswap. They're out of scope.
+Audits issues have been fixed.
+
+{Reactions}
+thankyou (5) 
+
+[08/02/2023 08:33] kartoonjoy
+@14si2o_Flint and @0x11singh99 ⬆️
+
+{Reactions}
+👍🏻 
+
+[08/02/2023 08:45] 0x11singh99
+ie. code listed on c4 now is already audited  Or those audits were about your previusly deployed contracts,,,or the code listed on c4 is live also ??
+
+
+[08/02/2023 09:21] sath26
+why is it stuck in 30% for more than 15 mins
+
+{Attachments}
+Code4rena - ARCHIVE-Q3-2023 - goodentry-aug01 [1134210009161531524].txt_Files/Screenshot_2023-08-02_at_3.05.56_PM-5D394.png
+
+
+[08/02/2023 10:47] nicodeva
+it shouldnt, most likely the geth fork is stuck downloading some of the tree state
+Happens to me sometime, especially the coverage mode
+you can also try replacing the fork RPC address with your own Alchemy or Infura address (can create one for free), I haven't seen any notification from alchemy but maybe too many simultaneous requests are being rate limited.
+
+{Reactions}
+thankyou 
+
+[08/02/2023 10:53] nicodeva
+code deployed is audited, except from addDust fnc in OptionsPM
+Audit was covering additional contracts that are out of scope of c4 contest
+
+{Reactions}
+👍 
+
+[08/02/2023 10:53] lourenslinde
+Hi @NicoDeva, sent you a friend request for a quick question
+
+
+[08/02/2023 11:00] _3doc_
+Hi @NicoDeva I didn't manage to reach you in DM - would you be willing open your profile to receiving DM from non-friends or accepting the friend request? TY!
+
+
+[08/02/2023 11:31] sath26
+any idea how to solve this... i have this same issue in other test file as well
+
+{Attachments}
+Code4rena - ARCHIVE-Q3-2023 - goodentry-aug01 [1134210009161531524].txt_Files/Screenshot_2023-08-02_at_5.11.44_PM-33C32.png
+
+
+[08/02/2023 13:12] wisdomn_
+Hi @NicoDeva  some contracts in the scope don't work.
+
+
+[08/02/2023 13:19] nicodeva
+@LokiThe5th @3DOC I opened DMs
+
+{Reactions}
+❤️ (2) 
+
+[08/02/2023 13:27] nicodeva
+I dont see any issue, please make sure your ganache fork is mainnet  at block 16360000
+
+
+[08/02/2023 13:28] nicodeva
+The contracts do compile, if you have any issues plese send me a msg with details of what fails and how
+
+
+[08/02/2023 13:30] sath26
+ganache-cli --port 8545 --gasLimit 12000000 --accounts 10 --hardfork istanbul --mnemonic brownie --fork https://eth-mainnet.g.alchemy.com/v2/<API key> --host 0.0.0.0
+
+how can i use mainnet at block 16360000 with this command
+
+
+[08/02/2023 13:32] sath26
+by changing istanbul to 16360000?
+
+
+[08/02/2023 13:32] delerrh
+After api key add @blocknumber
+
+
+[08/02/2023 13:47] nicodeva
+ganache-cli --port 8545 --gasLimit 12000000 --accounts 10 --hardfork istanbul --mnemonic brownie --fork https://eth-mainnet.g.alchemy.com/v2/<API key>@16360000 --host 0.0.0.0
+
+
+[08/02/2023 14:00] wisdomn_
+Ok, please accept my friend request.
+It's a 404 -page not found error.
+IAaveLendingPoolV2.sol
+
+
+[08/02/2023 14:47] mike_bello90
+guys can someone explain what is debt reformed and debt outstanding?
+
+
+[08/02/2023 15:19] mike_bello90
+oh now I get it jaja
+
+
+[08/02/2023 15:21] scoolj
+Same with my testing too.
+
+
+[08/02/2023 15:22] scoolj
+What is happening?
+
+
+[08/02/2023 15:45] sath26
+I havent been able to solve yet
+
+
+[08/02/2023 15:52] scoolj
+I added my alchemy api as suggested up there. still  waiting for it to load
+
+
+[08/02/2023 16:17] sulpiride
+@NicoDeva what is Roe? 🤔
+
+
+[08/02/2023 16:18] lokacho
+same as Good Entry
+
+{Reactions}
+👍 (2) 
+
+[08/02/2023 16:18] _3doc_
+https://github.com/RoeFinance/RoeMarkets
+
+{Embed}
+https://github.com/RoeFinance/RoeMarkets
+GitHub - RoeFinance/RoeMarkets
+Contribute to RoeFinance/RoeMarkets development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q3-2023 - goodentry-aug01 [1134210009161531524].txt_Files/RoeMarkets-FB00C
+
+{Reactions}
+👍 
+
+[08/02/2023 16:18] sulpiride
+got it, thank you
+
+
+[08/02/2023 17:53] .testerbot
+Sorry its my first audit, why does the Scope table includes more than 14 contracts, when in scoping details it says there are only 14 contracts in scope?
+
+
+[08/02/2023 19:08] thebrittfactor (pinned)
+**Wardens** - please note that the automated findings output (AKA the winning bot race report 🏆, submitted by @ChaseTheLight) is posted below.
+
+These are considered publicly known issues and are not eligible for awards.
+
+🤖 **Automated findings:** 
+https://gist.github.com/thebrittfactor/691192755086c4aa311b69a9de0690f3
+
+📄 **Code4rena submission guidelines and automated findings policy:** 
+https://docs.code4rena.com/roles/wardens/submission-policy#automated-findings-ineligible
+
+The above link will also be added to the contest README shortly.
+
+
+[08/02/2023 19:09] thebrittfactor
+Pinned a message.
+
+
+[08/02/2023 22:20] fulum
+I dm you @NicoDeva
+
+{Reactions}
+👍 
+
+[08/02/2023 23:00] mike_bello90
+Hi @NicoDeva send you a FR to ask you about the audit 😀
+
+{Reactions}
+👍 
+
+[08/03/2023 04:43] wisdomn_
+@NicoDeva kindly reply.
+
+
+[08/03/2023 04:48] nicodeva
+guess the bot included the interface/ dir. dont audit the interface. nothing to audit there anyway
+
+
+[08/03/2023 06:08] delerrh
+@NicoDeva Tests are too slow, what is your brownie configuration?
+
+
+[08/03/2023 06:42] nicodeva
+I dont use any particular brownie config, tests take maybe 2-3mn for me, I guess most of the time is downloading state data
+
+{Reactions}
+👍 
+
+[08/03/2023 10:18] liffidmonky
+hey fellow auditors, does anyone know any program that compares forge gas snapshots? 🤔  I couldnt find one so I created my own bash scripts, if anyone is interesetd on them tell me.😁
+
+{Reactions}
+🔥 
+
+[08/03/2023 12:12] scoolj
+Same here.  I  also use my api  from alchemy.
+
+
+[08/03/2023 12:24] beirao
+Hey @NicoDeva , Is the AAVE fork you're using modified?  any modifications?
+
+
+[08/03/2023 12:26] beirao
+Ok I found the answer here : https://github.com/RoeFinance/RoeMarkets#main-changes
+
+{Embed}
+https://github.com/RoeFinance/RoeMarkets
+GitHub - RoeFinance/RoeMarkets
+Contribute to RoeFinance/RoeMarkets development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q3-2023 - goodentry-aug01 [1134210009161531524].txt_Files/RoeMarkets-FB00C
+
+
+[08/03/2023 13:17] nicodeva
+https://github.com/GoodEntry-io/GoodEntryMarkets
+is indeed modified and audited, out of scope though. it allows whitelisted contracts (the OptionPositionManager and the RangeManager) to get user tokens without check under special conditions
+
+{Embed}
+https://github.com/GoodEntry-io/GoodEntryMarkets
+GitHub - GoodEntry-io/GoodEntryMarkets
+Contribute to GoodEntry-io/GoodEntryMarkets development by creating an account on GitHub.
+
+{Reactions}
+👍🏼 (4) 
+
+[08/03/2023 16:16] 0xpathfindr
+Hey @NicoDeva sent you a friend request
+
+
+[08/03/2023 19:39] saint6704
+@NicoDeva  sent you a FR to ask certain doubts about the audit
+
+
+[08/03/2023 20:09] supernovahs
+@NicoDeva dmed
+
+
+[08/04/2023 01:31] nicodeva
+https://github.com/GoodEntry-io/GoodEntryMarkets/blob/master/contracts/protocol/lendingpool/LendingPool.sol.0x20#L486
+
+PMTransfer allows priviledged transfer of assets to position managers.
+This allows handling user assets without having to give allowance to position managers
+It also allows easy deleveraging (since can move tokens while there is ongoing debt)
+In exchange the PM needs to be secure and return all assets else there could be bad debt. Or another user's assets could be stolen.
+
+So transfers are only allowed if coming from the user moving its own funds (for leveraging/deleveraging purposes, or recreating TR asset), or if the health factor is low and (soft) liquidation is allowed
+
+{Embed}
+https://github.com/GoodEntry-io/GoodEntryMarkets/blob/master/contracts/protocol/lendingpool/LendingPool.sol.0x20
+GoodEntryMarkets/contracts/protocol/lendingpool/LendingPool.sol.0x2...
+Contribute to GoodEntry-io/GoodEntryMarkets development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q3-2023 - goodentry-aug01 [1134210009161531524].txt_Files/GoodEntryMarkets-2C429
+
+{Reactions}
+thankyou (3) 
+
+[08/05/2023 07:24] nicodeva
+Do you guys think there are donation attacks possible on the GeVaults?
+
+
+[08/05/2023 08:59] parsely.
+Will look closer, but, my  initial thoughts, when i did a brief check for that was that they were not vulnerable, but will spend more focus on that.
+
+
+[08/06/2023 05:22] kaveyjoe
+why IAaveLendingPoolV2 is not available ??
+
+{Attachments}
+Code4rena - ARCHIVE-Q3-2023 - goodentry-aug01 [1134210009161531524].txt_Files/Screenshot_2023-08-06_110121-96610.png
+
+
+[08/06/2023 06:32] nicodeva
+it's not ~/contracts/interfaces but ~/interfaces
+
+
+[08/06/2023 13:12] praise95
+@NicoDeva boss pls accept my fr
+
+{Reactions}
+👍 
+
+[08/06/2023 18:57] hex_sadeeq
+@NicoDeva  sent you a friend request
+
+
+[08/06/2023 21:04] 0xthec0der
+Probably missed someone else asking the same question, but the readme states that the end date is August 8th and according to the contest website it's August 7th.
+What's the real end date?
+
+{Reactions}
+👀 
+
+[08/06/2023 22:55] pura8289
+If we submit a finding for an audit, when will we get back from them?
+
+
+[08/07/2023 08:02] parsely.
+Hi all, apologies to ask, I don't use brownie, and have checked the documentation, but I dont see why i am getting this error, does anyone know perhaps? With brownie compile or test : ```Project must start with an alphabetic character```
+
+
+[08/07/2023 08:39] t1moh
+Also  don't know about Brownie, but rename of project directory to start with letter helped
+
+
+[08/07/2023 08:41] parsely.
+Thank you very much, as you responded I tried that and it worked, so was about to post that I had a working test, thanks for taking the time to help, much appreciated.
+
+
+[08/07/2023 09:38] elcid2000
+@NicoDeva dmed you!
+
+
+[08/07/2023 09:51] neon2835
+@parsely Hi, may i ask  How many GeVaults are planned to be deployed？？
+
+
+[08/07/2023 09:53] parsely.
+Hi @Neon2835 I am sorry I am not part of the DEV team, I am not sure apologies. @NicoDeva might perhaps be able to guide us.
+
+
+[08/07/2023 09:54] neon2835
+Ah, sorry, I thought you were a sponsor,
+
+{Reactions}
+💯 
+
+[08/07/2023 10:03] nicodeva
+we dont know, currently 4 are deployed
+
+
+[08/07/2023 10:05] neon2835
+ok thanks
+
+
+[08/07/2023 13:44] neon2835
+@NicoDeva   Hi , is the code used for the deployed ezVault contract the same as the one we are currently auditing?
+
+
+[08/07/2023 13:44] 0xswahili
+Help needed:  I have a hard time trying to connect docs with the contracts. For example AMM Swap fees.
+
+
+[08/07/2023 13:45] neon2835
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q3-2023 - goodentry-aug01 [1134210009161531524].txt_Files/image-70352.png
+
+
+[08/07/2023 13:53] 0xswahili
+"Oops!! It seems this contract source code has not been verified "
+
+
+[08/07/2023 13:58] neon2835
+yes
+
+
+[08/07/2023 14:00] nicodeva
+Nothing has been changed since the Peckshield audit
+
+
+[08/07/2023 20:02] C4
+**🚨 AUDIT ALERT**
+
+@🐺wardens The **Good Entry** audit is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks. Keep an eye on #📢announcements for regular updates on how the audit is progressing through awarding 🤑🏆, judging 🧑‍⚖️ and reporting 📜. Feel free to ping a Contest-Admin if you have questions along the way!
+
+{Reactions}
+🚀 (6) 🔥 (4) 
+
+[08/07/2023 20:04] fulum
+Nice contest, gl everyone :chefskiss:
+
+{Reactions}
+🙏 (8) 
+
+[08/07/2023 22:43] mike_bello90
+guys normally, how much time does it take to know the results?
+
+
+[08/07/2023 23:59] fulum
+https://docs.code4rena.com/structure/our-process
+
+{Embed}
+https://docs.code4rena.com/structure/our-process
+Audit timeline
+This is a high level overview of the C4 audit timeline. We have an increasingly detailed operational manual in Notion.
+
+
+[08/08/2023 00:01] fulum
+It depends on many factors but 2 weeks/1 month generally
+
+
+[08/08/2023 06:33] parsely.
+@NicoDeva Once the contest is finished , and if you would like, I am happy to share a reentrancy vulnerability vector, if it is not surfaced by the researchers in the contest. It's in the GeVault. It depends on the Oracle not reverting on a non-existant token (returning 0 price maybe), so my PoC on mainnet failed because it reverted on address(0). But happy to share. (NOT ASKING FOR ANY OUT OF BAND PAYMENT, It's just the right thing to do!) @kartoonjoy @CloudEllie  Please correct me or allow me to share through C4, Please I am by no means trying to get any benefit after the fact or directly from the project, but would be very sad if it was exploited and I did not say anything.
+
+{Reactions}
+code4rena (2) 
+
+[08/08/2023 08:25] masterbean.
+this would be very helpful if we can get this
+
+
+[08/08/2023 08:30] parsely.
+Chatted to @NicoDeva it seems to not be an issue. Apologies for the concern, just trying to help as best I can.
+
+{Reactions}
+🙏 (3) 🫡 
+
+[08/08/2023 08:53] parsely.
+I can 100% confirm I made a few changes to the contract in order to make sure my idea would run, and it was caught, so it is definately not an issue : ```brownie.exceptions.VirtualMachineError: revert: ReentrancyGuard: reentrant call```
+
+
+[08/08/2023 08:57] masterbean.
+appreciate you making an effort to test out our project
+
+
+[08/08/2023 08:57] masterbean.
+good vibes
+
+{Reactions}
+🙏 (3) 
+
+[08/08/2023 08:58] masterbean.
+if you enter our discord, we'll be sure to award some good points
+
+
+[08/08/2023 08:58] masterbean.
+for your good vibes
+
+
+[08/08/2023 08:58] parsely.
+Much appreciated
+
+
+[08/08/2023 15:50] mike_bello90
+get it! thank you
+
+
+[08/28/2023 11:48] elcid2000
+Any update about this contest?
+
+{Reactions}
+👀 (2) 
+
+[08/28/2023 16:07] _3doc_
+the post-judging phase ended on Aug the 23rd, we shouldn't need to wait much... 
+
+the last contest I've seen passing by took 2 more weeks, so finger-crossed we'll see something in ~10 days?
+
+{Reactions}
+👀 (4) 🫠 (3) 👍 (2) 
+
+[08/29/2023 11:57] josephdara
+Hopefully soon🙏
+
+{Reactions}
+👀 (4) 
+
+[08/30/2023 15:43] thebrittfactor
+🤑 🎉  Awards for **Good Entry**:
+
+$13,341.68 USDC » @3DOC 
+$8,261.62 USDC » @xuwinnie 
+$2,493.83 USDC » @kutu 
+$2,478.48 USDC » @0xDING99YA 
+$2,478.48 USDC » @libratus 
+$1,595.03 USDC » @said 
+$1,331.74 USDC » @LokiThe5th 
+$1,175.28 USDC » @Jeiwan
+$1,143.54 USDC » @josephdara 
+$1,120.79 USDC » @T1MOH 
+$1,076.42 USDC » @Sathish9098 
+$925.10 USDC » @HChang26 
+$875.10 USDC » @0xcatellatech 
+$849.26 USDC » @osmanozdemir1 
+$758.30 USDC » Team_FliBit (@14si2o_Flint & @Naubit)
+$678.69 USDC » @K42 Ψ 
+$640.79 USDC » @Krace 
+$638.31 USDC » @Fulum 
+$625.44 USDC » @DanielArmstrong 
+$625.44 USDC » @Limbooo 
+$482.48 USDC » @n1punp 
+$482.48 USDC » @nadin 
+$482.48 USDC » @0xmuxyz 
+$482.48 USDC » @auditsea 
+$482.48 USDC » @Satyam_Sharma
+$482.48 USDC » @R-Nemes 
+$482.48 USDC » @hassan-truscova 
+$482.48 USDC » @Vagner 
+$482.48 USDC » @radev_sw  
+$325.23 USDC » @nemveer 
+$250.17 USDC » @Madalad 
+$250.17 USDC » @n33k 
+$250.17 USDC » @Hama 
+$250.17 USDC » @0xBeirao 
+$247.04 USDC » @JCK 
+$229.51 USDC » @Rolezn 
+$190.03 USDC » @ReyAdmirado 
+$190.03 USDC » @Raihan 
+$190.03 USDC » @0xAnah 
+$174.13 USDC » @digitizeworx 
+$158.78 USDC » @0xSmartContract 
+$119.42 USDC » @pep7siup 
+$106.54 USDC » @oakcobalt 
+$91.19 USDC » @giovannidisiena 
+$91.19 USDC » @jesusrod15  
+$91.19 USDC » @SpicyMeatball 
+$32.69 USDC » @David Giladi 
+$28.23 USDC » @Santiago Moreno 
+$28.23 USDC » @j4ld1na 
+$28.23 USDC » @ravikiranweb3 
+$28.23 USDC » @hpsb 
+$17.34 USDC » @Rageur 
+$17.34 USDC » @SAQ 
+$17.34 USDC » @matrix_0wl 
+$17.34 USDC » @0xta 
+$17.34 USDC » @SY_S 
+$17.34 USDC » @dharma09 
+$17.34 USDC » @0xhex 
+$17.34 USDC » @naman1778 
+$17.34 USDC » @hunter_w3b 
+$17.34 USDC » @none 
+$17.34 USDC » @petrichor🦖 
+$16.74 USDC » @dd0x7e8 
+$15.35 USDC » @0x70C9 
+$15.35 USDC » @8olidity 
+$15.35 USDC » @sivanesh_808 
+$15.35 USDC » @banpaleo5 
+$15.35 USDC » @nonseodion 
+$15.35 USDC » @NiSeR 
+$15.35 USDC » @UniversalCrypto
+$12.88 USDC » @piyushshukla599 
+$12.88 USDC » @debo 
+$12.88 USDC » @grearlake 
+$12.88 USDC » @Bughunter101 
+$12.88 USDC » @Kaysoft 
+$12.88 USDC » @MatricksDeCoder
+$12.88 USDC » @shirochan 
+$12.88 USDC » @parsely 
+$12.88 USDC » @SanketKogekar 
+$12.88 USDC » @Udsen 
+
+
+🏁 Findings summary
+--------------------------------------—
+High risk findings: 6 unique (27 total)
+Med risk findings: 8 unique (40 total)
+Gas reports: 19 (Best: JCK)
+QA reports: 26 (Best: Team_FliBit)
+Advanced Analysis reports: 5 (Best: catellatech)
+
+Awards will be distributed on Polygon within the next week. Congratulations all and thanks for your patience!  💸 💸 💸
+
+Note: If you participated in this audit and don’t see your name on this list, please wait until the report is published and the findings repo is made public to check on your submissions.
+
+{Reactions}
+❤️ (9) 🎉 (10) 🥸 (4) 👽 (2) 
+
+[08/30/2023 15:45] 0x3b
+@kutu whenever I see a leader-board I see your name in top 3, do you ever sleep?
+
+
+[08/30/2023 15:46] fulum
+Good job all wardens 🥳
+
+
+[08/30/2023 15:46] josephdara
+First 4 digit pay🎉
+Wagmi
+
+{Reactions}
+👀 (2) 🎉 (10) 
+
+[08/30/2023 15:47] 0xtiwa
+Congratulations @josephdara 🎉🎉🎉
+WAGMI broo!!
+
+
+[08/30/2023 15:47] josephdara
+Thanks alot bro
+
+
+[08/30/2023 15:47] 0xtiwa
+Congratulations to all wardens🎉
+
+
+[08/30/2023 17:15] olanre_waju
+better result coming, maintain the consistency bro WAGMI!!!
+
+{Reactions}
+🫡 
+
+[08/30/2023 17:19] henry0226
+Do we have to register to be certified in order to receive payment for this contest?
+
+
+[08/30/2023 17:20] olanre_waju
+No
+
+{Reactions}
+👍 
+
+[08/30/2023 18:01] hpsb
+Hi all! So this was my first time participating. And I am glad that I got placed in the leaderboards (however low it may be),  I wanted to request the top players to answer these few questions I had;
+how did you all manage to earn so well and what are the areas I should look at?
+knowing so will greatly help me in the future.
+
+
+[08/30/2023 18:06] shubh0412
+Can anyone tell me who was the judge in this contest?
+
+
+[08/30/2023 19:33] sp1cymeatball
+Not a top player, but here is a nice article 
+https://cmichel.io/how-to-become-a-smart-contract-auditor/
+
+{Embed}
+https://cmichel.io/how-to-become-a-smart-contract-auditor/
+How to become a smart contract auditor | cmichel
+From time to time, I receive messages asking me for advice on how to get started as a smart contract security auditor.
+While there are…
+Code4rena - ARCHIVE-Q3-2023 - goodentry-aug01 [1134210009161531524].txt_Files/featured-1DE79.jpg
+
+{Reactions}
+👆🏽 (2) 
+
+[08/30/2023 19:48] hpsb
+thanks man
+
+
+[08/31/2023 01:09] nicodeva
+congrats to all wardens!
+
+{Reactions}
+🎉 (11) 
+
+[09/01/2023 10:25] mylifechangefast.eth
+sent a dm
+
+
+[10/02/2023 23:54] mike_bello90
+guys where can I see the comments on the reports I sent in this contest?
+
+
+[10/03/2023 04:14] _3doc_
+In this GitHub repo, you can open the issues having id that shows up in this search 👀 https://github.com/search?q=repo%3Acode-423n4%2F2023-08-goodentry-findings%20bello&type=code
+
+{Embed}
+https://github.com/search?q=repo%3Acode-423n4%2F2023-08-goodentry-findings%20bello&type=code
+Build software better, together
+GitHub is where people build software. More than 100 million people use GitHub to discover, fork, and contribute to over 330 million projects.
+Code4rena - ARCHIVE-Q3-2023 - goodentry-aug01 [1134210009161531524].txt_Files/github-logo-EE79A.png
+
+
+[10/03/2023 04:15] _3doc_
+Like 507, 131, …
+
+
+[10/03/2023 04:33] mike_bello90
+thank you
+
+
+[10/03/2023 04:36] mike_bello90
+shouldn't the judge write why a report is marked as invalid?
+
+
+[10/03/2023 04:37] mike_bello90
+I'm trying to understand why a report was rejected and learn from my past submissions
+
+
+[10/03/2023 04:45] _3doc_
+Normally they would, but not sure it’s anything more than a courtesy. Want me to take a guess on a submission?
+
+
+[10/03/2023 04:48] _3doc_
+something that helps a lot is backstage access, so you can ask judges for more info directly (and in time for having them change their mind sometimes)
+
+
+[10/03/2023 04:56] mike_bello90
+if you can give me some feedback in the 507 would be great thanks
+
+{Reactions}
+👀 
+
+[10/03/2023 04:58] mike_bello90
+will try to get it, but I've been having problems getting verified by the provider of KYC
+
+{Reactions}
+👍 
+
+[10/03/2023 05:16] _3doc_
+I think it fails to show a concrete impact for the protocol & its users (other than the obvious impact for the donator).
+
+The only thing that vaguely seems impactful is point 8 (that is why the issue has been marked duplicate of 48, closed with a proper explanation)
+
+
+[10/03/2023 05:20] _3doc_
+IMO a suggestion could be to be brief in explaining the various impacts, and be more rigorous in proving the highest impact (ideally with a runnable PoC in foundry or hardhat). Here you were very detailed in the scenarios but vague on the impact - that in the end is what makes a finding count
+
+{Reactions}
+❤️ (2) 
+
+[10/03/2023 05:24] mike_bello90
+Oo, I get it, appreciate your feedback, thank you!
+
+{Reactions}
+🤗 (2) 
+
+==============================================================
+Exported 132 message(s)
+==============================================================
